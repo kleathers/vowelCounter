@@ -15,10 +15,41 @@ namespace LB5
         public AdmissionForm()
         {
             InitializeComponent();
+            lblAccepted.Text = "";
         }
 
         private void btnAdmit_Click(object sender, EventArgs e)
         {
+            
+            double GPA = Convert.ToDouble(txtGpa.Text);
+            double testScore = Convert.ToDouble(txtTestScore.Text);
+            bool adminScore = IsStudentAccepted(GPA, testScore);
+           
+            if(adminScore == true)
+            {
+                lblAccepted.Text = string.Format("Accept");
+            }
+            else
+            {
+                lblAccepted.Text = string.Format("Reject");
+            }
+
+
         }
+        public bool IsStudentAccepted(double GPA, double testScore)
+        {
+            
+            if ((GPA >= 3.0 && testScore >= 60.0) || testScore >= 80.0)
+            {
+                return true;
+            }
+
+            else
+            {
+                return false;
+            }
+            
+        }
+        
     }
 }
